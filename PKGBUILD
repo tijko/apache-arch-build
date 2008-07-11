@@ -75,6 +75,6 @@ build() {
 	# cleanup
 	rm -rf ${pkgdir}/usr/share/httpd/manual
 	rm -rf ${pkgdir}/etc/httpd/conf/original
-	rm -rf ${pkgdir}/srv/http/*
+	rm -rf ${pkgdir}/srv/http
 	rmdir ${pkgdir}/usr/bin
 }
