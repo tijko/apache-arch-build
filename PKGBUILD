@@ -4,7 +4,7 @@
 
 pkgname=apache
 pkgver=2.2.24
-pkgrel=2
+pkgrel=3
 pkgdesc='A high performance Unix-based HTTP server'
 arch=('i686' 'x86_64')
 options=('!libtool')
@@ -31,6 +31,8 @@ source=(http://www.apache.org/dist/httpd/httpd-${pkgver}.tar.bz2
         ${_itkurl}/09-capabilities.patch
         ${_itkurl}/10-nice.patch
         ${_itkurl}/11-fix-htaccess-reads-for-persistent-connections.patch
+        apachectl-confd.patch
+        apache.conf.d
         apache.tmpfiles.conf
         httpd.logrotate
         httpd.service
@@ -47,6 +49,8 @@ md5sums=('91bd1484aca13a7095d6432be37fc7ae'
          'e75b7dd8d8afcd299ba4ab2ab81c11e4'
          'ce1ccc21f3ad8625169c8f62913450ac'
          '1e5b222edcfbf99a3edc56fcb2074fbe'
+         '4ac64df6e019edbe137017cba1ff2f51'
+         '08b3c875f6260644f2f52b4056d656b0'
          '82068753dab92fe86312b1010a2904d7'
          '13dbaaf949c5bc36cfcf5718b95cb020'
          'a823bb355c136fd0e2b3fb820e2d903c'
@@ -54,6 +58,8 @@ md5sums=('91bd1484aca13a7095d6432be37fc7ae'
 
 build() {
 	cd "${srcdir}/httpd-${pkgver}"
+
+	patch -Np0 -i "${srcdir}/apachectl-confd.patch"
 
 	# set default user
 	sed -e 's#User daemon#User http#' \
@@ -132,6 +138,7 @@ package() {
 	install -m755 build-itk/httpd "${pkgdir}/usr/bin/httpd.itk"
 
 	install -D -m644 "${srcdir}/httpd.logrotate" "${pkgdir}/etc/logrotate.d/httpd"
+	install -D -m644 "${srcdir}/apache.conf.d" "${pkgdir}/etc/conf.d/apache"
 	install -D -m644 "${srcdir}/apache.tmpfiles.conf" "${pkgdir}/usr/lib/tmpfiles.d/apache.conf"
 
 	# symlinks for /etc/httpd
