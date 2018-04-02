@@ -4,7 +4,7 @@
 
 pkgname=apache
 pkgver=2.4.33
-pkgrel=2
+pkgrel=3
 pkgdesc='A high performance Unix-based HTTP server'
 arch=('x86_64')
 url='http://www.apache.org/dist/httpd'
@@ -19,6 +19,8 @@ backup=(
     etc/logrotate.d/httpd
 )
 provides=('mod_proxy_uwsgi')
+conflicts=('mod_proxy_uwsgi')
+replaces=('mod_proxy_uwsgi')
 depends=('zlib' 'apr-util' 'pcre' 'libnghttp2' 'openssl')
 makedepends=('libxml2' 'lua' 'curl' 'brotli' 'jansson')
 optdepends=(
@@ -27,6 +29,7 @@ optdepends=(
     'curl: for mod_md module'
     'jansson: for mod_md module'
     'brotli: for mod_brotli module'
+    'uwsgi: for mod_proxy_uwsgi module'
     'lynx: apachectl status'
 )
 source=(
