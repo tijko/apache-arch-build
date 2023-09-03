@@ -33,6 +33,7 @@ optdepends=(
     'lynx: apachectl status'
     'perl: for apxs and dbmmanage'
     'systemd-libs: for mod_systemd module'
+    'logrotate: for rotating logs'
 )
 source=(
     https://www.apache.org/dist/httpd/httpd-${pkgver}.tar.bz2{,.asc}
