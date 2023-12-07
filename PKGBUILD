@@ -1,6 +1,3 @@
-# Maintainer: Jan de Groot <jgc@archlinux.org>
-# Contributor: Andrea Scarpino <andrea@archlinux.org>
-# Contributor: Pierre Schmitz <pierre@archlinux.de>
 
 pkgname=apache
 pkgver=2.4.58
