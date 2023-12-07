@@ -71,7 +71,6 @@ build() {
   ./configure --sbindir=/usr/bin \
       --enable-layout=Arch \
       --enable-mpms-shared=all \
-      --enable-modules=all \
       --enable-mods-shared=all \
       --enable-so \
       --enable-suexec \
